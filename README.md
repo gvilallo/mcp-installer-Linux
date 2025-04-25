@@ -1,30 +1,62 @@
-# mcp-installer - A MCP Server to install MCP Servers
+# Guía de instalación de MCP Installer para Linux
+by gvilallo
 
-This server is a server that installs other MCP servers for you. Install it, and you can ask Claude to install MCP servers hosted in npm or PyPi for you. Requires `npx` and `uv` to be installed for node and Python servers respectively.
+A continuación, te presento una guía paso a paso para instalar y publicar el adaptador MCP Installer para Linux.
+Instalación del MCP Installer en Linux
+## Requisitos previos
+Node.js versión 20 o superior
+npm (incluido con Node.js)
+Git
+## Pasos de instalación
+Actualizar Node.js (si tu versión es inferior a 20)
+ bash
+# Instalar n (gestor de versiones de Node.js)
+sudo npm install -g n
 
-![image](https://github.com/user-attachments/assets/d082e614-b4bc-485c-a7c5-f80680348793)
+# Instalar la última versión estable
+sudo n stable
 
-### How to install:
+# Verificar la versión instalada
+node --version
 
-Put this into your `claude_desktop_config.json` (either at `~/Library/Application Support/Claude` on macOS or `C:\Users\NAME\AppData\Roaming\Claude` on Windows):
 
-```json
+## Clonar el repositorio
+ bash
+git clone https://github.com/gvilallo/mcp-installer-linux.git
+cd mcp-installer-linux
+
+
+## Instalar el paquete globalmente
+ bash
+npm install -g .
+
+
+## Verificar la instalación
+ bash
+which mcp-installer
+  Debería mostrar algo como: /usr/local/bin/mcp-installer
+
+
+## Configurar Claude Desktop
+Abrir o crear el archivo de configuración:
+ bash
+mkdir -p ~/.config/Claude
+nano ~/.config/Claude/claude_desktop_config.json
+
+
+## Añadir la configuración del MCP:
+ json
+{
   "mcpServers": {
-    "mcp-installer": {
-      "command": "npx",
-      "args": [
-        "@anaisbetts/mcp-installer"
-      ]
+    "mcp-installer-linux": {
+      "command": "/usr/local/bin/mcp-installer",
+      "args": []
     }
   }
-```
+}
 
-### Example prompts
 
-> Hey Claude, install the MCP server named mcp-server-fetch
+## Reiniciar Claude Desktop
+Cierra completamente Claude Desktop
+Abre nuevamente la aplicación
 
-> Hey Claude, install the @modelcontextprotocol/server-filesystem package as an MCP server. Use ['/Users/anibetts/Desktop'] for the arguments
-
-> Hi Claude, please install the MCP server at /Users/anibetts/code/mcp-youtube, I'm too lazy to do it myself.
-
-> Install the server @modelcontextprotocol/server-github. Set the environment variable GITHUB_PERSONAL_ACCESS_TOKEN to '1234567890'
