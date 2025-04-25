@@ -1,15 +1,15 @@
 {
-  "name": "@anaisbetts/mcp-installer",
+  "name": "@gvilallo/mcp-installer-linux",
   "version": "0.5.0",
   "bin": {
     "mcp-installer": "./lib/index.mjs"
   },
-  "description": "A MCP server to install other MCP servers",
+  "description": "A MCP server to install other MCP servers on Linux",
   "main": "index.js",
   "scripts": {
     "prepare": "tsc && shx chmod +x ./lib/index.mjs"
   },
-  "author": "Ani Betts <anais@anaisbetts.org>",
+  "author": "Ani Betts <anais@anaisbetts.org> ..",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.1",
